@@ -16,14 +16,7 @@ class AboutController extends Controller
     public function index (Request $request)
     {
         $data = array();
-        $data['lang'] = HomeController::getLang();
-        $data['type'] = Protype::all();
-        if($request->has('ptype'))
-            $data['ptype'] = $request->input('ptype');
-        else
-            $data['ptype'] = $data['type'][0]->id;
 
-        $data['about'] = About::first();
         return view('about', ['data' => $data]);
     }
 }

@@ -6,19 +6,24 @@
 Route::any('session', ['uses' => 'PositionController@test1']);
 
 Route::any('/', ['uses' => 'HomeController@index']);//完成
-Route::get('/index', ['uses' => 'HomeController@changeLang']);//完成
-Route::get('/about', ['uses' => 'AboutController@index']);//完成
-Route::any('news/{pagnum?}', ['uses' => 'NewsController@SearchNews'])->where('pagnum', '[0-9]+');//完成
-Route::any('detail', ['uses' => 'NewsController@detail']);
-Route::any('news/content', ['uses' => 'NewsController@requestNewsContent']);
-
-Route::get('products', ['uses' => 'ProductsController@index']);
-Route::post('products', ['uses' => 'ProductsController@index']);
-Route::get('advantage', ['uses' => 'ProductsController@advantage']);
-Route::get('market', ['uses' => 'HomeController@marketIndex']);
-
+Route::get('/products', ['uses' => 'ProductsController@index']);//完成
 Route::get('contact', ['uses' => 'HomeController@contact']);
-Route::post('message/add', ['uses' => 'HomeController@AddMeaasge']);
+Route::get('/about', ['uses' => 'AboutController@index']);//完成
+
+
+//Route::get('/index', ['uses' => 'HomeController@changeLang']);//完成
+//Route::get('/about', ['uses' => 'AboutController@index']);//完成
+//Route::any('news/{pagnum?}', ['uses' => 'NewsController@SearchNews'])->where('pagnum', '[0-9]+');//完成
+//Route::any('detail', ['uses' => 'NewsController@detail']);
+//Route::any('news/content', ['uses' => 'NewsController@requestNewsContent']);
+//
+//Route::get('products', ['uses' => 'ProductsController@index']);
+//Route::post('products', ['uses' => 'ProductsController@index']);
+//Route::get('advantage', ['uses' => 'ProductsController@advantage']);
+//Route::get('market', ['uses' => 'HomeController@marketIndex']);
+//
+//Route::get('contact', ['uses' => 'HomeController@contact']);
+//Route::post('message/add', ['uses' => 'HomeController@AddMeaasge']);
 
 
 //网站后台

@@ -17,10 +17,10 @@
                 <div class="col-md-2">
                     <h6>网站链接</h6>
                     <ul class="links">
-                        <li><a href="#.">主页</a></li>
-                        <li><a href="#.">产品展示</a></li>
-                        <li><a href="#.">关于我们</a></li>
-                        <li><a href="#.">联系我们</a></li>
+                        <li><a href="/">主页</a></li>
+                        <li><a href="products">产品展示</a></li>
+                        <li><a href="about">关于我们</a></li>
+                        <li><a href="contact">联系我们</a></li>
                     </ul>
                 </div>
 

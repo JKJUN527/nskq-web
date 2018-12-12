@@ -11,7 +11,13 @@
 
 @section('custom-style')
     <style>
-
+        .modal-body{
+            text-align: center;
+        }
+        .modal-body img{
+            width: 50%;
+            height: auto;
+        }
     </style>
 @endsection
 @section('content')
@@ -85,7 +91,7 @@
                              data-endelementdelay="0.1"
                              data-endspeed="300"
                              data-scrolloffset="0"
-                             style="z-index: 8;"><a href="#." class="btn margin-right-20">Buy Theme</a> <a href="#." class="btn btn-white">Get Started</a> </div>
+                             style="z-index: 8;"><a data-toggle="modal" data-target="#myModal" class="btn margin-right-20">Buy Theme</a></div>
                     </li>
                     <!-- SLIDE  -->
                     <li data-transition="random" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" >
@@ -146,7 +152,7 @@
                              data-endelementdelay="0.1"
                              data-endspeed="300"
                              data-scrolloffset="0"
-                             style="z-index: 8;"><a href="#." class="btn margin-right-20">Buy Theme</a> </div>
+                             style="z-index: 8;"><a data-toggle="modal" data-target="#myModal" class="btn margin-right-20">立即查看</a> </div>
                     </li>
                     <!-- SLIDE  -->
                     <li data-transition="random" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" >
@@ -208,7 +214,7 @@
                              data-elementdelay="0.1"
                              data-endelementdelay="0.1"
                              data-endspeed="300"
-                             style="z-index: 7; max-width: auto; max-height: auto; white-space: nowrap;"><a href="#." class="btn">立即购买</a> </div>
+                             style="z-index: 7; max-width: auto; max-height: auto; white-space: nowrap;"><a data-toggle="modal" data-target="#myModal" class="btn">立即查看</a> </div>
                     </li>
                 </ul>
             </div>
@@ -224,7 +230,7 @@
 
                 <!-- Heading -->
                 <div class="heading text-center">
-                    <h4>What We Offer</h4>
+                    <h4>我们的服务</h4>
                     <span>Creative Design</span>
                     <hr>
                 </div>
@@ -236,17 +242,17 @@
                             <h5>What We Do</h5>
                             <hr class="main">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet felis at turpis aliquam maximus. Cras nec mauris ex. Aliquam nibh felis</p>
-                            <a href="#.">Read more <i class="fa fa-long-arrow-right"></i></a> </li>
+                            </li>
                         <li class="col-sm-4"> <img src="images/offer-img-2.jpg" class="img-responsive" alt="" >
                             <h5> Who We Are</h5>
                             <hr class="main">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet felis at turpis aliquam maximus. Cras nec mauris ex. Aliquam nibh felis</p>
-                            <a href="#.">Read more <i class="fa fa-long-arrow-right"></i></a> </li>
+                            </li>
                         <li class="col-sm-4"> <img src="images/offer-img-3.jpg" class="img-responsive" alt="" >
                             <h5>How We Work</h5>
                             <hr class="main">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet felis at turpis aliquam maximus. Cras nec mauris ex. Aliquam nibh felis</p>
-                            <a href="#.">Read more <i class="fa fa-long-arrow-right"></i></a> </li>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -400,21 +406,21 @@
                 </div>
                 <div class="row">
                     <!-- Team Member -->
-                    <div class="col-md-4 margin-bottom-30"> <i class="icon-anchor"></i>
+                    <div class="col-md-4 margin-bottom-30"> <i class="fa fa-laptop"></i>
                         <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="35" data-from="0">500</span> </span>
                             <h5>产品种类</h5>
                         </div>
                     </div>
 
                     <!-- Line Of Codes -->
-                    <div class="col-md-4 margin-bottom-30"> <i class="icon-pencil"></i>
+                    <div class="col-md-4 margin-bottom-30"> <i class="fa fa-globe"></i>
                         <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="5225" data-from="0">54</span> </span>
                             <h5>分店</h5>
                         </div>
                     </div>
 
                     <!-- Satisfied Client -->
-                    <div class="col-md-4  margin-bottom-30"> <i class="icon-heart"></i>
+                    <div class="col-md-4  margin-bottom-30"> <i class="fa fa-area-chart"></i>
                         <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="4977" data-from="0">1000+</span> </span>
                             <h5>日成交量</h5>
                         </div>
@@ -628,6 +634,24 @@
                 {{--</div>--}}
             {{--</div>--}}
         {{--</section>--}}
+    </div>
+    <!-- 模态框（Modal）显示微信公众号二维码 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">微信扫一扫</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="{{asset('images/code.jpeg')}}" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    {{--<button type="button" class="btn btn-primary">提交更改</button>--}}
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
     </div>
 @endsection
 @section('footer')

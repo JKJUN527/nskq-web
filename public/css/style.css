@@ -1166,7 +1166,7 @@ header .container {
 .sub-bnr {
 	background: url(../images/sub-bnr-bg.jpg) no-repeat;
 	background-size: cover !important;
-	min-height: 485px;
+	min-height: 350px;
 	text-align: center;
 	position: relative;
 }
@@ -4291,7 +4291,7 @@ footer .subscribe input {
 	color: #333;
 }
 .contact-page .contact-form-sec {
-	background: #e9f2f4;
+	background: #fff;
 }
 .contact-page .contact-form-sec #map {
 	height: 550px;

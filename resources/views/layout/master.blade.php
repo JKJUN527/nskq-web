@@ -16,13 +16,16 @@
         <link href="{{asset('css/bootstrap-3.1.1.min.css')}}" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet" type="text/css">
+        {{--<link href="{{asset('css/font-awesome.css')}}" rel="stylesheet" type="text/css">--}}
+        <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet">
         <link href="{{asset('css/main.css')}}" rel="stylesheet">
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
         <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
+        {{--分页样式--}}
+        <link href="{{asset('css/myPagination.css')}}" rel="stylesheet">
 
-        <!-- COLORS -->
+    <!-- COLORS -->
         <link rel="stylesheet" id="color" href="{{asset('css/default.css')}}">
 
         <!-- JavaScripts -->
@@ -57,6 +60,7 @@
 </html>
 <!-- JavaScripts -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
+{{--<script src="{{asset('css/jquery.min.js')}}"></script>--}}
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/own-menu.js')}}"></script>
 <script src="{{asset('js/jquery.lighter.js')}}"></script>
@@ -66,5 +70,8 @@
 <script type="text/javascript" src="{{asset('plugins/rs-plugin/rs-plugin/js/jquery.tp.t.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('plugins/rs-plugin/rs-plugin/js/jquery.tp.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+{{--分页插件--}}
+<script src="{{asset('js/myPagination.js')}}"></script>
+
 @section('custom-script')
     @show

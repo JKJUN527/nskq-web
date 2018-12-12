@@ -1,242 +1,167 @@
 @extends('layout.master')
-@section('title', '温州市顺泰化工有限公司|关于我们')
-
-@section('header-tab')
-    @include('components.headerTab',['lang'=>$data['lang']])
-@endsection
+@section('title', '诺斯凯其-上海官网|关于我们')
 
 @section('header-nav')
-    @include('components.headerNav',['activeIndex'=>2,'lang'=>$data['lang']])
+    @include('components.headerNav')
 @endsection
 
 @section('custom-style')
     <style>
-        .post{
-            padding: 35px;
-            background: #ffffff;
-            margin-bottom: 35px;
-            position: relative;
-            overflow: hidden;
-        }
-        .post .post-head {
-            text-align: center;
-        }
-        .post .post-head .post-title {
-            margin: 0;
-            font-size: 2.5em;
-            line-height: 1em;
-        }
-        .post .post-content {
-            margin: 30px 0;
-        }
-        .post-content blockquote {
-            margin-left: -24px;
-            padding-left: 20px;
-            border-width: 4px;
-        }
-        .post-content blockquote {
-            margin: 0 0 1.64em 0;
-            margin-left: 0px;
-            border-left: 3px solid #e67e22;
-            border-left-width: 3px;
-            padding-left: 12px;
-            color: #666664;
-        }
-        blockquote {
-            padding: 10px 20px;
-            padding-left: 20px;
-            margin: 0 0 20px;
-            font-size: 17.5px;
-            border-left: 5px solid #eee;
-        }
-        .post-content p {
-            margin-top: 0;
-            margin-bottom: 1.46em;
-        }
-        .post-content a img {
-            border: none;
-        }
-        .post-content img {
-            max-width: 100%;
-            height: auto;
-            margin: 0.2em 2rem 0 2rem;
-            float: right;
-        }
-        .content-wrap{
-            margin-top: 5rem;
-        }
-        .sidebar .widget {
-            background: #ffffff;
-            padding: 21px 30px;
-        }
-        .widget {
-            margin-bottom: 35px;
-        }
-        .widget .title {
-            margin-top: 0;
-            padding-bottom: 7px;
-            border-bottom: 1px solid #ebebeb;
-            margin-bottom: 21px;
-            position: relative;
-        }
-        .widget a{
-            color: #0f0f0f;
-        }
-        h4 {
-            font-size: 1.5em;
-        }
-        p {
-            margin: 0 0 10px;
-        }
-        .widget .title::after {
-            content: "";
-            width: 90px;
-            height: 1px;
-            background: #00adb5;
-            position: absolute;
-            left: 0;
-            bottom: -1px;
-        }
-        .about_banner{
-            background:url({{asset('images/head4.jpg')}})no-repeat center top;
-            background-size:cover;
-            -webkit-background-size:cover;
-            -moz-background-size:cover;
-            -o-background-size:cover;
-        }
+
     </style>
 @endsection
 @section('content')
-    <div class="about_banner">
-        <div class="container">
-            {{--<h2>顺泰化工</h2>--}}
-            {{--<span class="breadcrumbs"><a href="/"><i class="fa fa-home home_1"></i></a> / <span>关于我们</span></span>--}}
-        </div>
-    </div>
-
-    {{--<section class="content-wrap">--}}
-        {{--<div class="container">--}}
-            {{--<div class="row">--}}
-                {{--<main class="col-md-8 main-content">--}}
-                    {{--<article class="post page">--}}
-                        {{--<header class="post-head">--}}
-                            {{--<h1 class="post-title">温州市顺泰化工有限公司</h1>--}}
-                        {{--</header>--}}
-                        {{--<section class="post-content">--}}
-                            {{--<blockquote>--}}
-                                {{--<p>{{$data['about']->brief}}</p>--}}
-                            {{--</blockquote>--}}
-                            {{--<p style="text-align: center;">--}}
-                                {{--<img src="{{explode('@',explode(';',$data['about']->picture)[0])[1]}}" alt="{{explode('@',explode(';',$data['about']->picture)[0])[0]}}" />--}}
-                            {{--</p>--}}
-                            {{--<p>{!! $data['about']->describe !!}</p>--}}
-                            {{--<hr />--}}
-
-                            {{--<p>如果你也喜欢 Ghost ，可以通过以下方式与我们交流：</p>--}}
-
-                            {{--<ul>--}}
-                                {{--<li>微博：<a href="http://weibo.com/ghostchinacom">@ghostchinacom</a></li>--}}
-                                {{--<li>QQ群：309172035</li>--}}
-                            {{--</ul>--}}
-                        {{--</section>--}}
-
-                    {{--</article>--}}
-
-                {{--</main>--}}
-
-                {{--<aside class="col-md-4 sidebar">--}}
-                    {{--<!-- start widget -->--}}
-                    {{--<!-- end widget -->--}}
-
-                    {{--<!-- start tag cloud widget -->--}}
-                    {{--<div class="widget">--}}
-                        {{--<h4 class="title">联系我们</h4>--}}
-                        {{--<div class="content community">--}}
-                            {{--<p>电话：{{$data['about']->tel}}</p>--}}
-                            {{--<p>邮箱：{{$data['about']->email}}</p>--}}
-                            {{--<p>传真：{{$data['about']->fax}}</p>--}}
-                            {{--<p>公司地址：{{$data['about']->address}}</p>--}}
-                            {{--<p><a href="http://wenda.ghostchina.com/" title="Ghost中文网问答社区" target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', '问答社区'])"><i class="fa fa-comments"></i> 问答社区</a></p>--}}
-                            {{--<p><a href="http://weibo.com/ghostchinacom" title="Ghost中文网官方微博" target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', '官方微博'])"><i class="fa fa-weibo"></i> 官方微博</a></p>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                {{--</aside>--}}
-
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</section>--}}
-
-    <section class="content-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-4 padding-top">
-                    <div class="sidebar portfolio-sidebar">
-                        <div class="sidebar-item categories">
-                            <div class="widget">
-                                <h3 class="title">@if($data['lang'] == 1) 产品分类 @else Product Type @endif</h3>
-                                <ul class="nav navbar-stacked">
-                                    @foreach($data['type'] as $type)
-                                        <li @if($data['ptype'] == $type->id) class="active" @endif>
-                                            <a href="/products?ptype={{$type->id}}">
-                                                @if($data['lang'] == 1)
-                                                    {{$type->ch_name}}
-                                                @else
-                                                    {{$type->en_name}}
-                                                @endif
-                                                {{--<span class="pull-right">(1)</span>--}}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="sidebar-item  recent">
-                            <div class="widget">
-                                <h3 class="title">@if($data['lang']==1) 联系我们 @else Contact Us @endif</h3>
-                                <div class="content community">
-                                    <p>@if($data['lang']==1) 电话 @else Phone @endif：{{$data['about']->tel}}</p>
-                                    <p>@if($data['lang']==1) 邮箱 @else E-mail @endif：{{$data['about']->email}}</p>
-                                    <p>@if($data['lang']==1) 传真 @else Fax @endif：{{$data['about']->fax}}</p>
-                                    <p>@if($data['lang']==1) 公司地址：{{$data['about']->address}} @else Address ：{{$data['about']->address_en}}@endif</p>
-                                    {{--<p><a href="http://wenda.ghostchina.com/" title="Ghost中文网问答社区" target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', '问答社区'])"><i class="fa fa-comments"></i> 问答社区</a></p>--}}
-                                    {{--<p><a href="http://weibo.com/ghostchinacom" title="Ghost中文网官方微博" target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', '官方微博'])"><i class="fa fa-weibo"></i> 官方微博</a></p>--}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-9 col-sm-8 padding-top">
-                    <article class="post page">
-                        <header class="post-head">
-                            <h1 class="post-title">@if($data['lang']==1) 温州市顺泰化工有限公司 @else Wenzhou Shuntai Chemical Co., Ltd.@endif</h1>
-                        </header>
-                        <section class="post-content">
-                            {{--<blockquote>--}}
-                                {{--<p>{{$data['about']->brief}}</p>--}}
-                            {{--</blockquote>--}}
-                            @if($data['lang']==1)
-                                <p>
-                                    {{--<img src="{{explode('@',explode(';',$data['about']->picture)[0])[1]}}" alt="{{explode('@',explode(';',$data['about']->picture)[0])[0]}}" />--}}
-                                    {!! $data['about']->describe !!}
-                                </p>
-                            @else
-                                <p>
-                                    {{--<img src="{{explode('@',explode(';',$data['about']->picture)[0])[1]}}" alt="{{explode('@',explode(';',$data['about']->picture)[0])[0]}}" />--}}
-                                    {!! $data['about']->describe_en !!}
-                                </p>
-                            @endif
-                                <hr />
-                        </section>
-
-                    </article>
-                </div>
+    <!--======= HOME MAIN SLIDER =========-->
+    <section class="sub-bnr" data-stellar-background-ratio="0.5" >
+        <div class="position-center-center">
+            <div class="container">
+                <h3>关于我们</h3>
+                <hr>
+                <ol class="breadcrumb">
+                    <li><a href="/">主页</a></li>
+                    <li class="active">关于我们</li>
+                </ol>
             </div>
         </div>
     </section>
+
+    <!-- Content -->
+    <div id="content">
+
+        <!-- TEAM -->
+        <section class="innovaction light-sec padding-top-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+
+                        <!-- Heading -->
+                        <div class="heading text-left margin-bottom-20">
+                            <h4>诺斯凯其·上海</h4>
+                            <span>公司简介</span>
+                            <hr>
+                        </div>
+
+                        <!-- Info -->
+                        <p>We have a number of different teams within our agency that specialise in different areas of business so you can be sure that you won’t receive a generic service and although we can’t boast years and years of service we can ensure you that is a good thing in this industry. The data sources that we use for this type of analysis include customer enquiry data, sales figures, costs, market data and customer feedback.
+                            Maecenas mollis rhoncus justo ac gravida. Duis purus risus, auctor sed erat et</p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor massa ut ipsum lobortis feugiat eget quis elit. Maecenas mollis rhoncus justo ac gravida. Duis purus risus, auctor sed erat et, blandit tempus mauris. Etiam magna odio, convallis pulvinar eleifend at, suscipit et libero. </p>
+                        {{--<a href="#." class="btn margin-top-20">Read more <i class="fa fa-long-arrow-right"></i></a> --}}
+                    </div>
+
+                    <!-- Image -->
+                    <div class="col-sm-6 text-right"> <img class="img-responsive" src="images/skills-img.png" alt="" > </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM -->
+        <section class="padding-top-50 padding-bottom-50">
+            <div class="container">
+
+                <!-- Heading -->
+                <div class="heading text-center">
+                    <h4>公司文化</h4>
+                    <span>The Top Pick... Team Members</span>
+                    <hr>
+                </div>
+
+                <!-- TEAM -->
+                <div class="team">
+                    <div class="row">
+
+                        <!-- MEMBER -->
+                        <div class="col-md-3">
+                            <article> <img class="img-responsive" src="images/team-1.jpg" alt="">
+                                <div class="team-hover">
+                                    <div class="team-name">
+                                        <h5>公司一隅</h5>
+                                        <span>Code Worrior</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- MEMBER -->
+                        <div class="col-md-3">
+                            <article> <img class="img-responsive" src="images/team-2.jpg" alt="">
+                                <div class="team-hover">
+                                    <div class="team-name">
+                                        <h5>Alex Jones</h5>
+                                        <span>Code Worrior</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- MEMBER -->
+                        <div class="col-md-3">
+                            <article> <img class="img-responsive" src="images/team-3.jpg" alt="">
+                                <div class="team-hover">
+                                    <div class="team-name">
+                                        <h5>Alex Jones</h5>
+                                        <span>Code Worrior</span><a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-dribbble"></i></a> </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- MEMBER -->
+                        <div class="col-md-3">
+                            <article> <img class="img-responsive" src="images/team-4.jpg" alt="">
+                                <div class="team-hover">
+                                    <div class="team-name">
+                                        <h5>Alex Jones</h5>
+                                        <span>Code Worrior</span><a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-dribbble"></i></a> </div>
+                                </div>
+                            </article>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FACTS -->
+        <section class="facts light">
+            <div class="container">
+
+                <!-- Heading -->
+                <div class="heading text-center">
+                    <h4>我们的数据</h4>
+                    <span>看的见的认可</span>
+                    <hr>
+                </div>
+                <div class="row">
+                    <!-- Team Member -->
+                    <div class="col-md-4 margin-bottom-30"> <i class="fa fa-laptop"></i>
+                        <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="35" data-from="0">500</span> </span>
+                            <h5>产品种类</h5>
+                        </div>
+                    </div>
+
+                    <!-- Line Of Codes -->
+                    <div class="col-md-4 margin-bottom-30"> <i class="fa fa-globe"></i>
+                        <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="5225" data-from="0">54</span> </span>
+                            <h5>分店</h5>
+                        </div>
+                    </div>
+
+                    <!-- Satisfied Client -->
+                    <div class="col-md-4  margin-bottom-30"> <i class="fa fa-area-chart"></i>
+                        <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="4977" data-from="0">1000+</span> </span>
+                            <h5>日成交量</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 @endsection
 @section('footer')
-    @include('components.myfooter',['lang'=>$data['lang']])
+    @include('components.myfooter')
 @endsection
 @section('custom-script')
+    <script>
+
+    </script>
 @endsection
