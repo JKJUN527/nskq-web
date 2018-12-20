@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title', '企业展示列表')
+@section('title', '公司文化展示照片')
 
 @section('custom-style')
     <style>
@@ -20,7 +20,7 @@
         .big-image--btn{
             border: 1px solid antiquewhite;
         }
-        .big-image--btn h5,.big-image--btn p{
+        .big-image--btn h5{
             text-align: center;
         }
         .big-image--btn img{
@@ -30,7 +30,7 @@
 @endsection
 
 @section('sidebar')
-    @include('components.adminAside', ['title' => 'ad', 'subtitle'=>'adList', 'username' => $data['username']])
+    @include('components.adminAside', ['title' => 'culture', 'subtitle'=>'list', 'username' => $data['username']])
 @endsection
 
 @section('content')
@@ -42,12 +42,10 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 operate-btn big-image--btn">
                             <img src="{{$pic->image}}"/>
                             <h5>{{$pic->title}}</h5>
-                            <p>{{$pic->sub_title}}</p>
-                            <p>{{$pic->introduce}}</p>
                             <input class="delete" type="button" data-content="{{$pic->id}}" value="删除"/>
                         </div>
                     @empty
-                        <p>暂无图片</p>
+                            <p>暂无图片</p>
                     @endforelse
                     <div style="clear:both;"></div>
                 </div>

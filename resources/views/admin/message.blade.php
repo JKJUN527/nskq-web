@@ -56,7 +56,7 @@
                                 <td>{{$message->id}}</td>
                                 <td>{{$message->name or '无'}}</td>
                                 <td>{{$message->email or '无'}}</td>
-                                <td>{{mb_substr($message->content, 0, 20)}}</td>
+                                <td>{{mb_substr($message->message, 0, 20)}}</td>
                                 <td>{{$message->created_at}}</td>
                                 <td>
                                     <i class="material-icons detail" data-content="{{$message->id}}"
@@ -115,7 +115,7 @@
 
                     $(".news-time").html(news['created_at']);
 
-                    var content = news['content'];
+                    var content = news['message'];
 
                     $(".news-content").html(content);
                 }

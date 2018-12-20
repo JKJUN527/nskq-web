@@ -46,33 +46,59 @@
                         <span>产品列表</span>
                     </a>
                 </li>
+                {{--<li--}}
+                        {{--@if($title === 'news')--}}
+                        {{--class="active"--}}
+                        {{--@endif--}}
+                {{-->--}}
+                    {{--<a href="javascript:void(0);" class="menu-toggle">--}}
+                        {{--<i class="material-icons">subject</i>--}}
+                        {{--<span>新闻</span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="ml-menu">--}}
+                        {{--<li--}}
+                                {{--@if($subtitle === 'newsList')--}}
+                                {{--class="active"--}}
+                                {{--@endif--}}
+                        {{-->--}}
+                            {{--<a href="/admin/news">新闻列表</a>--}}
+                        {{--</li>--}}
+                        {{--<li--}}
+                                {{--@if($subtitle === 'addNews')--}}
+                                {{--class="active"--}}
+                                {{--@endif--}}
+                        {{-->--}}
+                            {{--<a href="/admin/addNews">发布新闻</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+
                 <li
-                        @if($title === 'news')
+                        @if($title === 'culture')
                         class="active"
                         @endif
                 >
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">subject</i>
-                        <span>新闻</span>
+                        <span>公司文化</span>
                     </a>
                     <ul class="ml-menu">
                         <li
-                                @if($subtitle === 'newsList')
+                                @if($subtitle === 'list')
                                 class="active"
                                 @endif
                         >
-                            <a href="/admin/news">新闻列表</a>
+                            <a href="/admin/culturelist">文化照片列表</a>
                         </li>
                         <li
-                                @if($subtitle === 'addNews')
+                                @if($subtitle === 'add')
                                 class="active"
                                 @endif
                         >
-                            <a href="/admin/addNews">发布新闻</a>
+                            <a href="/admin/addculture">新增文化照片</a>
                         </li>
                     </ul>
                 </li>
-
                 <li
                         @if($title === 'ad')
                         class="active"
@@ -80,7 +106,7 @@
                 >
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">business_center</i>
-                        <span>企业展示照片</span>
+                        <span>轮播图</span>
                     </a>
                     <ul class="ml-menu">
                         <li

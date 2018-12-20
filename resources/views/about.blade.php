@@ -42,11 +42,7 @@
                         </div>
 
                         <!-- Info -->
-                        <p>We have a number of different teams within our agency that specialise in different areas of business so you can be sure that you won’t receive a generic service and although we can’t boast years and years of service we can ensure you that is a good thing in this industry. The data sources that we use for this type of analysis include customer enquiry data, sales figures, costs, market data and customer feedback.
-                            Maecenas mollis rhoncus justo ac gravida. Duis purus risus, auctor sed erat et</p>
-                        <br>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor massa ut ipsum lobortis feugiat eget quis elit. Maecenas mollis rhoncus justo ac gravida. Duis purus risus, auctor sed erat et, blandit tempus mauris. Etiam magna odio, convallis pulvinar eleifend at, suscipit et libero. </p>
-                        {{--<a href="#." class="btn margin-top-20">Read more <i class="fa fa-long-arrow-right"></i></a> --}}
+                        <p>{!! $data['webinfo']->describe !!}</p>
                     </div>
 
                     <!-- Image -->
@@ -62,59 +58,26 @@
                 <!-- Heading -->
                 <div class="heading text-center">
                     <h4>公司文化</h4>
-                    <span>The Top Pick... Team Members</span>
+                    <span>Company Culture</span>
                     <hr>
                 </div>
 
                 <!-- TEAM -->
                 <div class="team">
                     <div class="row">
-
+                        @foreach($data['culture'] as $item)
                         <!-- MEMBER -->
                         <div class="col-md-3">
-                            <article> <img class="img-responsive" src="images/team-1.jpg" alt="">
+                            <article> <img class="img-responsive" src="{{$item->image}}" alt="">
                                 <div class="team-hover">
                                     <div class="team-name">
-                                        <h5>公司一隅</h5>
-                                        <span>Code Worrior</span>
+                                        <h5>{{$item->title}}</h5>
+                                        <span>诺斯凯其</span>
                                     </div>
                                 </div>
                             </article>
                         </div>
-
-                        <!-- MEMBER -->
-                        <div class="col-md-3">
-                            <article> <img class="img-responsive" src="images/team-2.jpg" alt="">
-                                <div class="team-hover">
-                                    <div class="team-name">
-                                        <h5>Alex Jones</h5>
-                                        <span>Code Worrior</span>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-                        <!-- MEMBER -->
-                        <div class="col-md-3">
-                            <article> <img class="img-responsive" src="images/team-3.jpg" alt="">
-                                <div class="team-hover">
-                                    <div class="team-name">
-                                        <h5>Alex Jones</h5>
-                                        <span>Code Worrior</span><a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-dribbble"></i></a> </div>
-                                </div>
-                            </article>
-                        </div>
-
-                        <!-- MEMBER -->
-                        <div class="col-md-3">
-                            <article> <img class="img-responsive" src="images/team-4.jpg" alt="">
-                                <div class="team-hover">
-                                    <div class="team-name">
-                                        <h5>Alex Jones</h5>
-                                        <span>Code Worrior</span><a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-dribbble"></i></a> </div>
-                                </div>
-                            </article>
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>
@@ -158,7 +121,7 @@
     </div>
 @endsection
 @section('footer')
-    @include('components.myfooter')
+    @include('components.myfooter',['webinfo'=>$data['webinfo']])
 @endsection
 @section('custom-script')
     <script>

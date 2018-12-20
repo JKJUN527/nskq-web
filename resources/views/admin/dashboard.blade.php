@@ -52,12 +52,6 @@
                         <span>{{$data['webinfo']->describe or '无介绍'}}</span>
                     </dd>
                 </dl>
-                <dl>
-                    <dt><span>首页优势产品介绍</span></dt>
-                    <dd>
-                        <span>{{$data['webinfo']->advantage or '无介绍'}}</span>
-                    </dd>
-                </dl>
             </div>
         </div>
 
@@ -76,13 +70,8 @@
         <button class="btn bg-teal waves-effect"
                 data-toggle="modal" data-target="#setAddressModal">修改公司地址
         </button>
-        {{--<button class="btn bg-teal waves-effect">修改公司工作时间</button>--}}
-        {{--<button class="btn bg-teal waves-effect">修改副标题</button>--}}
         <button class="btn bg-teal waves-effect"
                 data-toggle="modal" data-target="#setContentModal">修改网站介绍
-        </button>
-        <button class="btn bg-teal waves-effect"
-                data-toggle="modal" data-target="#setAdvantageModal">修改优势产品介绍
         </button>
 
     </div>

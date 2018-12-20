@@ -41,7 +41,7 @@ body {
 	font-weight: normal;
 	position: relative;
 	font-size: 14px;
-	font-family: 'Lato', sans-serif;
+	font-family: Microsoft YaHei;
 }
 /*=======================================================
       WRAPPER
@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
 	color: #252525;
 	letter-spacing: 0.5px;
 	text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Microsoft YaHei;
 }
 h1 {
 	font-size: 42px;
@@ -219,7 +219,7 @@ a:hover, a:focus {
 	font-weight: normal;
 	font-size: 12px;
 	border-radius: 30px;
-	font-family: 'Montserrat', sans-serif;
+	/*font-family: 'Montserrat', sans-serif;*/
 	line-height: 46px;
 	background: #1cd1aa;
 	letter-spacing: 1px;
@@ -227,7 +227,7 @@ a:hover, a:focus {
 	z-index: 1;
 }
 .btn:hover {
-	background: #fff;
+	background: #ca856a;
 	color: #1cd1aa;
 }
 .btn i {
@@ -2918,16 +2918,16 @@ a.close-page {
 	display: inline-block;
 }
 .pagination>li>a, .pagination>li>span {
-	border: none;
+	/*border: none;*/
 	border-radius: 0px !important;
 	padding: 0px;
 	text-align: center;
-	line-height: 26px;
+	/*line-height: 26px;*/
 	color: #999999;
 	margin: 0px;
 	padding: 2px 5px;
 	margin: 0 10px;
-	border-bottom: 1px solid #08ada7;
+	/*border-bottom: 1px solid #08ada7;*/
 	font-size: 10px;
 	font-weight: normal;
 	font-family: 'Montserrat', sans-serif;
@@ -4346,11 +4346,11 @@ footer .subscribe input {
 	font-size: 30px;
 	line-height: 76px;
 	color: #fff;
-	margin-right: 10px;
+	/*margin-right: 10px;*/
 }
 .contact-info h6 {
 	color: #1cd1aa;
-	margin-top: 0px;
+	/*margin-top: 0px;*/
 }
 .contact-info li p {
 	margin: 0px;

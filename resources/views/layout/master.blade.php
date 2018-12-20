@@ -22,8 +22,6 @@
         <link href="{{asset('css/main.css')}}" rel="stylesheet">
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
         <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
-        {{--分页样式--}}
-        <link href="{{asset('css/myPagination.css')}}" rel="stylesheet">
 
     <!-- COLORS -->
         <link rel="stylesheet" id="color" href="{{asset('css/default.css')}}">
@@ -70,8 +68,38 @@
 <script type="text/javascript" src="{{asset('plugins/rs-plugin/rs-plugin/js/jquery.tp.t.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('plugins/rs-plugin/rs-plugin/js/jquery.tp.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
-{{--分页插件--}}
-<script src="{{asset('js/myPagination.js')}}"></script>
+<script type="text/javascript">
+    $(".index-messages").submit(function (event) {
+        event.preventDefault();
+        var email = $('input[name=index_email]').val();
+        if(email == ''){
+            return;
+        }
+        var formData = new FormData();
+        formData.append("email", email);
+        formData.append("phone", "");
+        formData.append("name", "主页用户");
+        formData.append("message", "我有合作意向，请尽快与我联系");
 
+        $.ajax({
+            url: "/message/add",
+            type: "post",
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (data) {
+                $("#addRegionModal").modal('toggle');
+                var result = JSON.parse(data);
+                if(result.status = 200)
+                    alert(result.msg);
+                else
+                    alert('留言失败')
+            }
+        })
+    });
+</script>
 @section('custom-script')
+
     @show

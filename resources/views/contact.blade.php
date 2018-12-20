@@ -44,35 +44,32 @@
                                 <div class="icon"> <i class="fa fa-envelope"></i> </div>
                             </div>
                             <div class="media-body">
-                                <h6>Email</h6>
-                                <p>premio@.co.uk<br>
-                                    domain@.co.uk</p>
+                                <h6>邮箱</h6>
+                                <p>{{$data['webinfo']->email}}</p>
                             </div>
                         </li>
-
-                        <!-- Address -->
-                        <li class="col-md-12">
-                            <div class="media-left">
-                                <div class="icon"> <i class="fa fa-map-marker"></i> </div>
-                            </div>
-                            <div class="media-body">
-                                <h6>Address</h6>
-                                <p>Andrew Cross 50 Front Street<br>
-                                    KNOTTY GREEN HP9 2WB</p>
-                            </div>
-                        </li>
-
                         <!-- Phone -->
                         <li class="col-md-12">
                             <div class="media-left">
                                 <div class="icon"> <i class="fa fa-phone"></i> </div>
                             </div>
                             <div class="media-body">
-                                <h6>Phone</h6>
-                                <p>+44 078-5099-1689<br>
-                                    +44 078-5099-1859</p>
+                                <h6>电话传真</h6>
+                                <p>{{$data['webinfo']->tel}}<br>
+                                    {{$data['webinfo']->fax}}</p>
                             </div>
                         </li>
+                        <!-- Address -->
+                        <li class="col-md-12">
+                            <div class="media-left">
+                                <div class="icon"> <i class="fa fa-map-marker"></i> </div>
+                            </div>
+                            <div class="media-body">
+                                <h6>地址</h6>
+                                <p>{{$data['webinfo']->address}}</p>
+                            </div>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -84,30 +81,30 @@
                     <div class="contact-form padding-50 padding-right-75">
 
                         <!-- FORM -->
-                        <form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return false">
+                        <form role="form" id="contact_form" class="contact-form">
                             <ul class="row">
                                 <li class="col-sm-6">
-                                    <label>*NAME
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="">
+                                    <label>*您的姓名
+                                        <input type="text" class="form-control" name="name" id="name" required placeholder="">
                                     </label>
                                 </li>
                                 <li class="col-sm-6">
-                                    <label>*EMAIL
-                                        <input type="text" class="form-control" name="email" id="email" placeholder="">
+                                    <label>*您的邮箱
+                                        <input type="text" class="form-control" name="email" id="email" required placeholder="">
                                     </label>
                                 </li>
                                 <li class="col-sm-12">
-                                    <label>PHONE
-                                        <input type="text" class="form-control" name="company" id="company" placeholder="">
+                                    <label>您的电话
+                                        <input type="text" class="form-control" name="phone" id="phone" placeholder="">
                                     </label>
                                 </li>
                                 <li class="col-sm-12">
-                                    <label>*MESSAGE
-                                        <textarea class="form-control" name="message" id="message" rows="5" placeholder=""></textarea>
+                                    <label>*留言
+                                        <textarea class="form-control" name="message" id="message" rows="5" required placeholder=""></textarea>
                                     </label>
                                 </li>
                                 <li class="col-sm-12 text-center no-margin">
-                                    <button type="submit" value="submit" class="btn" id="btn_submit" onClick="proceed();">SEND NOW</button>
+                                    <button type="submit" value="submit" class="btn" id="btn_submit">提交给我们</button>
                                 </li>
                             </ul>
                         </form>
@@ -120,10 +117,43 @@
     </div>
 @endsection
 @section('footer')
-    @include('components.myfooter')
+    @include('components.myfooter',['webinfo'=>$data['webinfo']])
 @endsection
 @section('custom-script')
     <script>
+        $('#btn_submit').click(function (e) {
+            e.preventDefault();
+            var email = $('input[id=email]').val();
+            var phone = $('input[id=phone]').val();
+            var name = $('input[id=name]').val();
+            var message = $('#message').val();
+            if(name == ''||email == ''||message == ""){
+                alert('姓名、邮箱、留言不能为空');
+                return;
+            }
+            var formData = new FormData();
+            formData.append("email", email);
+            formData.append("phone", phone);
+            formData.append("name", name);
+            formData.append("message", message);
 
+            $.ajax({
+                url: "/message/add",
+                type: "post",
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (data) {
+                    $("#addRegionModal").modal('toggle');
+                    var result = JSON.parse(data);
+                    if(result.status = 200)
+                        alert(result.msg);
+                    else
+                        alert('留言失败')
+                }
+            })
+        })
     </script>
 @endsection

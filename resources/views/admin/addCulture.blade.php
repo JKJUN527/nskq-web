@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title', 'Add Ads')
+@section('title', '新增企业文化照片')
 
 @section('custom-style')
     <style>
@@ -74,7 +74,7 @@
 @endsection
 
 @section('sidebar')
-    @include('components.adminAside', ['title' => 'ad', 'subtitle'=>'addAds', 'username' => $data['username']])
+    @include('components.adminAside', ['title' => 'culture', 'subtitle'=>'add', 'username' => $data['username']])
 @endsection
 
 @section('content')
@@ -82,7 +82,7 @@
         <div class="card">
             <div class="header">
                 <h2>
-                    新增首页轮播图片
+                    新增企业文化照片
                 </h2>
             </div>
             <div class="top-border operate-content">
@@ -93,7 +93,7 @@
                                 <input type="file" id="picture-big" name="picture-big" class="form-control"
                                        onchange='showBigPreview(this)'/>
                             </div>
-                            <div class="help-info" for="picture-big">.jpg 或 .png格式，1920×850 像素</div>
+                            <div class="help-info" for="picture-big">.jpg 或 .png格式，270×320 像素</div>
                             <label id="picture-big-error" class="error" for="picture-big"></label>
                         </div>
 
@@ -103,23 +103,9 @@
                         <div class="input-group">
                             <div class="form-line">
                                 <input type="text" id="title-big" name="title-big" class="form-control"
-                                       placeholder="标题,首页轮播中间绿色文字">
+                                       placeholder="标题,例如公司前台">
                             </div>
                             <label id="title-big-error" class="error" for="title-big"></label>
-                        </div>
-                        <div class="input-group">
-                            <div class="form-line">
-                                <input type="text" id="sub_title" name="sub_title" class="form-control"
-                                       placeholder="副标题,首页轮播顶部白色文字">
-                            </div>
-                            <label id="sub_title-error" class="error" for="sub_title"></label>
-                        </div>
-                        <div class="input-group">
-                            <div class="form-line">
-                                <input type="text" id="introduce" name="introduce" class="form-control"
-                                       placeholder="简介,首页轮播底部小白色文字">
-                            </div>
-                            <label id="introduce-error" class="error" for="introduce"></label>
                         </div>
 
                         <button type="submit"
@@ -181,20 +167,20 @@
                         var height = image.height;
                         console.log(width + "//" + height);
 
-                        if (width < 1920 || height < 850) {
+                        if (width < 270 || height < 320) {
                             isCorrect = false;
                             $("#picture-big").val("");
                             swal({
                                 title: "错误",
                                 type: "error",
-                                text: "当前选择图片分辨率为: " + width + "px * " + height + "px \n大图片广告分辨率应为 1920像素 * 850像素",
+                                text: "当前选择图片分辨率为: " + width + "px * " + height + "px \n大图片广告分辨率应为 270像素 * 320像素",
                                 cancelButtonText: "关闭",
                                 showCancelButton: true,
                                 showConfirmButton: false
                             });
                         } else if (isCorrect) {
                             $("#preview-holder-big").html("<div class='image-preview'>" +
-                                "<img src='" + objectUrl + "' width='192' height='85'>" +
+                                "<img src='" + objectUrl + "' width='270' height='320'>" +
                                 "<i class='material-icons delete-image' onclick='deleteBigImage(this)'>close</i></div>");
                         }
                     };
@@ -228,8 +214,6 @@
 
             var file = $("#picture-big");
             var title = $("input[name='title-big']");
-            var sub_title = $("input[name='sub_title']");
-            var introduce = $("input[name='introduce']");
 
             if (title.val() === '') {
                 setError(title, 'title-big', "不能为空");
@@ -237,33 +221,21 @@
             } else {
                 removeError(title, 'title-big');
             }
-            if (sub_title.val() === '') {
-                setError(sub_title, 'sub_title', "不能为空");
-                return;
-            } else {
-                removeError(sub_title, 'sub_title');
-            }
-            if (introduce.val() === '') {
-                setError(introduce, 'introduce', "不能为空");
-                return;
-            } else {
-                removeError(introduce, 'introduce');
-            }
 
             var formData = new FormData();
 
             if (file.prop("files")[0] === undefined) {
                 console.log("file is empty");
-                setError(file, 'picture-big', "请上传广告图片1920像素 * 850像素");
+                setError(file, 'picture-big', "请上传广告图片1580像素 * 450像素");
                 return;
             } else {
                 removeError(file, 'picture-big');
                 formData.append('image', file.prop("files")[0]);
             }
-            formData.append('type', 1);
             formData.append('title', title.val());
-            formData.append('sub_title', sub_title.val());
-            formData.append('introduce', introduce.val());
+            formData.append('type', 0);
+            formData.append('sub_title', "");
+            formData.append('introduce', "");
 
             $.ajax({
                 url: "/admin/ads/add",
@@ -277,7 +249,7 @@
                     var result = JSON.parse(data);
                     checkResult(result.status, "添加成功", result.msg, null);
                      setTimeout(function () {
-                         location.href="/admin/ads";
+                         location.href="/admin/culturelist";
                      }, 500);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {

@@ -9,10 +9,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class Culture extends Model
 {
     //指定表明
-    protected $table = 'db_message';
+    protected $table = 'db_culture';
 
     //指定主键id
     protected $primaryKey = 'id';

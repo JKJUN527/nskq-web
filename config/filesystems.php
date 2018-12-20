@@ -58,25 +58,10 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-        /*个人头像、企业logo*/
-        'profile' => [
+        /*广告图片*/
+        'products' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/profiles'),
-        ],
-        /*法人照片、企业营业执照*/
-        'authentication' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/authentication'),
-        ],
-        /*新闻图片*/
-        'newspic' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/newspic'),
-        ],
-        /*企业圈图片*/
-        'cooperpic' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/cooperpic'),
+            'root' => storage_path('app/public/products'),
         ],
         /*广告图片*/
         'adpic' => [

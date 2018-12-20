@@ -10,6 +10,10 @@ Route::get('/products', ['uses' => 'ProductsController@index']);//完成
 Route::get('contact', ['uses' => 'HomeController@contact']);
 Route::get('/about', ['uses' => 'AboutController@index']);//完成
 
+//留言
+Route::post('message/add', ['uses' => 'HomeController@AddMeaasge']);
+
+
 
 //Route::get('/index', ['uses' => 'HomeController@changeLang']);//完成
 //Route::get('/about', ['uses' => 'AboutController@index']);//完成
@@ -63,6 +67,11 @@ Route::any('admin/ads/detail', ['uses' => 'Admin\AdvertsController@detail']);//�
 Route::any('admin/ads/add', ['uses' => 'Admin\AdvertsController@addAds']);//新增或修改广告信息
 Route::any('admin/ads/find', ['uses' => 'Admin\AdvertsController@findAd']);//查找location位置是否有广告
 Route::any('admin/ads/del', ['uses' => 'Admin\AdvertsController@delAd']);//删除广告
+
+//企业文化图片
+Route::get('admin/addculture', ['uses' => 'Admin\AdvertsController@addCultureView']);//
+
+Route::get('admin/culturelist', ['uses' => 'Admin\AdvertsController@cultureindex']);//
 
 //发布新闻
 Route::any('admin/news', ['uses' => 'Admin\EditnewsController@index']);//显示已发布新闻信息

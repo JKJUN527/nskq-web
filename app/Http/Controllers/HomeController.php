@@ -8,7 +8,9 @@
 namespace App\Http\Controllers;
 
 use App\About;
+use App\Culture;
 use App\Message;
+use App\Product;
 use App\Protype;
 use Illuminate\Http\Request;
 
@@ -17,11 +19,20 @@ class HomeController extends Controller
     public function index (Request $request)
     {
         $data = array();
+            $data['products'] = Product::where('is_urgency',1)
+                ->orderBy('updated_at','desc')
+                ->take(8)
+                ->get();
+        $data['productstype'] = Protype::all();
+        $data['webinfo'] = About::first();
+        //轮播图
+        $data['culture'] = Culture::where('type',1)->get();
 //        return $data;
-        return view('index');
+        return view('index',['data'=>$data]);
     }
     public function contact(Request $request){
         $data = array();
+        $data['webinfo'] = About::first();
 
         return view('contact',['data'=>$data]);
     }
@@ -34,7 +45,8 @@ class HomeController extends Controller
             $message = new Message();
             $message->name = $request->input('name');
             $message->email = $request->input('email');
-            $message->content = $request->input('message');
+            $message->message = $request->input('message');
+            $message->phone = $request->input('phone');
             if($message->save()){
                 $data['status'] = 200;
                 $data['msg'] = "留言成功！我们将尽快与您联系！";

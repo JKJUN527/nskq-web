@@ -13,6 +13,7 @@ use App\Product;
 use App\Protype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class RegionController extends Controller {
 
@@ -38,14 +39,12 @@ class RegionController extends Controller {
 
         switch ($option) {
             case 'add':
-                if ($request->has('ch_name') && $request->has('en_name')) {
+                if ($request->has('ch_name')) {
                     $ch_name = $request->input('ch_name');
-                    $en_name = $request->input('en_name');
                     $describe = $request->input('describe');
 
                     //判断是否存在该分类
-                    $is_exist = Protype::where('ch_name',$ch_name)
-                        ->orwhere('en_name',$en_name)
+                    $is_exist = Protype::where('name',$ch_name)
                         ->count();
                     if($is_exist >=1){
                         $resultData['status'] = 400;
@@ -53,8 +52,7 @@ class RegionController extends Controller {
                         return $resultData;
                     }
                     $protype = new Protype();
-                    $protype->ch_name = $ch_name;
-                    $protype->en_name = $en_name;
+                    $protype->name = $ch_name;
                     $protype->describe = $describe;
 
                     if ($protype->save()) {
@@ -69,8 +67,7 @@ class RegionController extends Controller {
                 if ($request->has('rid')) {
                     $data = $request->input('rid');
 
-                    $num = Product::where('type',$data)
-                        ->delete();
+                    $num = Product::where('type',$data)->delete();
 
                     $del = Protype::find($data);
                     $bool = $del->delete();
@@ -99,10 +96,10 @@ class RegionController extends Controller {
 
         $data = DashboardController::getLoginInfo();
         $data['region'] = Protype::all();
-        $data['products'] = DB::table('st_product')
-            ->leftjoin('st_product_type','st_product.type','st_product_type.id')
-            ->select('st_product.id','st_product.ch_name','st_product.en_name','model','cas_code','package','is_urgency','st_product_type.ch_name as typename')
-            ->orderBy('st_product.created_at','desc')
+        $data['products'] = DB::table('db_product')
+            ->leftjoin('db_product_type','db_product.type','db_product_type.id')
+            ->select('db_product.id','db_product.name','db_product.model','image','main_introduce','is_urgency','db_product_type.name as typename')
+            ->orderBy('db_product.created_at','desc')
             ->paginate(10);
         //return $data;
         return view('admin/products', ['data' => $data]);
@@ -117,29 +114,39 @@ class RegionController extends Controller {
 
         switch ($option) {
             case 'add':
-                if ($request->has('ch_name') && $request->has('en_name')) {
-                    $ch_name = $request->input('ch_name');
-                    $en_name = $request->input('en_name');
+                if ($request->has('name') && $request->has('introduce')) {
+                    $name = $request->input('name');
                     $model = $request->input('model');
-                    $package = $request->input('package');
-                    $cas = $request->input('cas');
                     $type = $request->input('type');
+                    $introduce = $request->input('introduce');
 
                     //判断是否存在该分类
-                    $is_exist = Product::where('ch_name',$ch_name)
-                        ->orwhere('en_name',$en_name)
-                        ->count();
+                    $is_exist = Product::where('name',$name)->count();
                     if($is_exist >=1){
                         $resultData['status'] = 400;
                         $resultData['msg'] = "产品已存在";
                         return $resultData;
                     }
                     $product = new Product();
-                    $product->ch_name = $ch_name;
-                    $product->en_name = $en_name;
+                    if ($request->hasFile('picture')) {
+                        $adpic = $request->file('picture');//取得上传文件信息
+                        if ($adpic->isValid()) {//判断文件是否上传成功
+                            //扩展名
+                            $ext = $adpic->getClientOriginalExtension();
+                            //临时觉得路径
+                            $realPath = $adpic->getRealPath();
+                            //生成文件名
+                            $picname = date('Y-m-d-H-i-s') . '-' . uniqid() . 'product' . '.' . $ext;
+
+                            $bool = Storage::disk('products')->put($picname, file_get_contents($realPath));
+
+                            $product->image = asset('storage/products/' . $picname);
+
+                        }
+                    }
+                    $product->name = $name;
                     $product->model = $model;
-                    $product->package = $package;
-                    $product->cas_code = $cas;
+                    $product->main_introduce = $introduce;
                     $product->type = $type;
 
                     if ($product->save()) {

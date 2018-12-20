@@ -18,6 +18,12 @@
             width: 50%;
             height: auto;
         }
+        .position-center-center .main-title
+        {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0 0 0.5rem 0;
+        }
     </style>
 @endsection
 @section('content')
@@ -33,14 +39,16 @@
             <div class="tp-banner">
                 <ul>
                     <!-- SLIDE  -->
+                    <?php $index = 1;?>
+                    @foreach($data['culture'] as $item)
                     <li data-transition="random" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" >
                         <!-- MAIN IMAGE -->
-                        <img src="images/slide-1.jpg"  alt="slider"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">
+                        <img src="{{$item->image}}"  alt="slider"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">
                         <!-- LAYERS -->
 
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption sfr font-bold tp-resizeme letter-space-4"
-                             data-x="left" data-hoffset="0"
+                             data-x="{{$index%2 == 0?'left':'center'}}" data-hoffset="0"
                              data-y="center" data-voffset="-80"
                              data-speed="800"
                              data-start="800"
@@ -50,11 +58,11 @@
                              data-elementdelay="0.07"
                              data-endelementdelay="0.1"
                              data-endspeed="300"
-                             style="z-index: 6; font-size:35px; color:#fff; text-transform:uppercase; white-space: nowrap;">Feel the magic of Creative Design </div>
+                             style="z-index: 6; font-size:35px; color:#fff; text-transform:uppercase; white-space: nowrap;">{{$item->sub_title}}</div>
 
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption sfr font-bold tp-resizeme letter-space-3"
-                             data-x="left" data-hoffset="0"
+                             data-x="{{$index%2 == 0?'left':'center'}}" data-hoffset="0"
                              data-y="center" data-voffset="0"
                              data-speed="800"
                              data-start="1300"
@@ -64,11 +72,11 @@
                              data-elementdelay="0.07"
                              data-endelementdelay="0.1"
                              data-endspeed="300"
-                             style="z-index: 6; font-size:70px; color:#1cd1aa; text-transform:uppercase; white-space: nowrap;">Welcome To Premio </div>
+                             style="z-index: 6; font-size:70px; color:#1cd1aa; text-transform:uppercase; white-space: nowrap;">{{$item->title}}</div>
 
                         <!-- LAYER NR. 3 -->
                         <div class="tp-caption sfb tp-resizeme letter-space-1"
-                             data-x="left" data-hoffset="0"
+                             data-x="{{$index%2 == 0?'left':'center'}}" data-hoffset="0"
                              data-y="center" data-voffset="70"
                              data-speed="800"
                              data-start="1800"
@@ -78,11 +86,11 @@
                              data-elementdelay="0.1"
                              data-endelementdelay="0.1"
                              data-endspeed="300"
-                             style="z-index: 7; font-size:18px;  font-style:italic; color:#fff; max-width: auto; max-height: auto; white-space: nowrap;">You'll Look a Little Lovelier Each Day with Fabulous Pink Creative design </div>
+                             style="z-index: 7; font-size:18px;  font-style:italic; color:#fff; max-width: auto; max-height: auto; white-space: nowrap;">{{$item->introduce}}</div>
 
                         <!-- LAYER NR. 4 -->
                         <div class="tp-caption lfb tp-resizeme"
-                             data-x="left" data-hoffset="0"
+                             data-x="{{$index%2 == 0?'left':'center'}}" data-hoffset="0"
                              data-y="center" data-voffset="150"
                              data-speed="800"
                              data-start="2200"
@@ -91,131 +99,10 @@
                              data-endelementdelay="0.1"
                              data-endspeed="300"
                              data-scrolloffset="0"
-                             style="z-index: 8;"><a data-toggle="modal" data-target="#myModal" class="btn margin-right-20">Buy Theme</a></div>
+                             style="z-index: 8;"><a data-toggle="modal" data-target="#myModal" class="btn margin-right-20">立即查看</a></div>
                     </li>
-                    <!-- SLIDE  -->
-                    <li data-transition="random" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" >
-                        <!-- MAIN IMAGE -->
-                        <img src="images/slide-2.jpg"  alt="slider"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">
-                        <!-- LAYERS -->
-
-                        <!-- LAYER NR. 2 -->
-                        <div class="tp-caption sfb font-bold tp-resizeme letter-space-4"
-                             data-x="left" data-hoffset="0"
-                             data-y="center" data-voffset="-80"
-                             data-speed="800"
-                             data-start="800"
-                             data-easing="Power3.easeInOut"
-                             data-splitin="words"
-                             data-splitout="none"
-                             data-elementdelay="0.07"
-                             data-endelementdelay="0.1"
-                             data-endspeed="300"
-                             style="z-index: 6; font-size:35px; color:#fff; text-transform:uppercase; white-space: nowrap;">Our Premio will give you softer skin </div>
-
-                        <!-- LAYER NR. 2 -->
-                        <div class="tp-caption sfb font-bold tp-resizeme letter-space-3"
-                             data-x="left" data-hoffset="0"
-                             data-y="center" data-voffset="0"
-                             data-speed="800"
-                             data-start="1300"
-                             data-easing="Power3.easeInOut"
-                             data-splitin="words"
-                             data-splitout="none"
-                             data-elementdelay="0.07"
-                             data-endelementdelay="0.1"
-                             data-endspeed="300"
-                             style="z-index: 6; font-size:70px; color:#1cd1aa; text-transform:uppercase; white-space: nowrap;">We Deal With Creative Design </div>
-
-                        <!-- LAYER NR. 3 -->
-                        <div class="tp-caption sfb tp-resizeme letter-space-1"
-                             data-x="left" data-hoffset="0"
-                             data-y="center" data-voffset="70"
-                             data-speed="800"
-                             data-start="1800"
-                             data-easing="Power3.easeInOut"
-                             data-splitin="none"
-                             data-splitout="none"
-                             data-elementdelay="0.1"
-                             data-endelementdelay="0.1"
-                             data-endspeed="300"
-                             style="z-index: 7; font-size:18px;  font-style:italic; color:#fff; max-width: auto; max-height: auto; white-space: nowrap;">Premio Stays Sharp 'til The Bottom of the Glass, Nunc mattis vitae dui ut eleifend. </div>
-
-                        <!-- LAYER NR. 4 -->
-                        <div class="tp-caption lfb tp-resizeme"
-                             data-x="left" data-hoffset="0"
-                             data-y="center" data-voffset="150"
-                             data-speed="800"
-                             data-start="2200"
-                             data-easing="Power3.easeInOut"
-                             data-elementdelay="0.1"
-                             data-endelementdelay="0.1"
-                             data-endspeed="300"
-                             data-scrolloffset="0"
-                             style="z-index: 8;"><a data-toggle="modal" data-target="#myModal" class="btn margin-right-20">立即查看</a> </div>
-                    </li>
-                    <!-- SLIDE  -->
-                    <li data-transition="random" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" >
-                        <!-- MAIN IMAGE -->
-                        <img src="images/slide-3.jpg"  alt="home_slider3"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">
-                        <!-- LAYERS -->
-
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption font-bold tp-resizeme"
-                             data-x="center" data-hoffset="0"
-                             data-y="center" data-voffset="-60"
-                             data-speed="100"
-                             data-start="800"
-                             data-easing="Power3.easeInOut"
-                             data-splitin="chars"
-                             data-splitout="none"
-                             data-elementdelay="0.1"
-                             data-endelementdelay="0.1"
-                             data-endspeed="300"
-                             style="z-index: 5; font-size:45px; color:#fff; max-width: auto; text-transform:uppercase; max-height: auto; white-space: nowrap;">Nathome 北欧欧慕 旅行折叠电热水壶</div>
-
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption font-bold tp-resizeme"
-                             data-x="center" data-hoffset="0"
-                             data-y="center" data-voffset="0"
-                             data-speed="100"
-                             data-start="800"
-                             data-easing="Power3.easeInOut"
-                             data-splitin="chars"
-                             data-splitout="none"
-                             data-elementdelay="0.1"
-                             data-endelementdelay="0.1"
-                             data-endspeed="300"
-                             style="z-index: 5; font-size:45px; color:#1cd1aa; max-width: auto; text-transform:uppercase; max-height: auto; white-space: nowrap;">喜迎双十二·全场所有商品五折出售</div>
-
-                        <!-- LAYER NR. 2 -->
-                        <div class="tp-caption font-italic font-lora sfb tp-resizeme text-center"
-                             data-x="center" data-hoffset="0"
-                             data-y="center" data-voffset="80"
-                             data-speed="300"
-                             data-start="1500"
-                             data-easing="Power3.easeInOut"
-                             data-splitin="none"
-                             data-splitout="none"
-                             data-elementdelay="0.07"
-                             data-endelementdelay="0.1"
-                             data-endspeed="300"
-                             style="z-index: 7; font-size:18px;  font-style:italic; color:#fff; max-width: auto; max-height: auto; white-space: nowrap;">认真做好没一款产品</div>
-
-                        <!-- LAYER NR. 3 -->
-                        <div class="tp-caption skewfromleft tp-resizeme"
-                             data-x="center" data-hoffset="0"
-                             data-y="center" data-voffset="170"
-                             data-speed="500"
-                             data-start="2000"
-                             data-easing="Power3.easeInOut"
-                             data-splitin="none"
-                             data-splitout="none"
-                             data-elementdelay="0.1"
-                             data-endelementdelay="0.1"
-                             data-endspeed="300"
-                             style="z-index: 7; max-width: auto; max-height: auto; white-space: nowrap;"><a data-toggle="modal" data-target="#myModal" class="btn">立即查看</a> </div>
-                    </li>
+                        <?php $index++;?>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -275,63 +162,66 @@
                 <!-- Work Filter -->
                 <ul class="portfolio-filter text-center margin-bottom-80">
                     <li><a class="active" href="#." data-filter="*">全部</a></li>
-                    <li><a href="#." data-filter=".pf-branding-design">type1 </a></li>
-                    <li><a href="#." data-filter=".pf-photography">type2 </a></li>
-                    <li><a href="#." data-filter=".pf-web-design">type3 </a></li>
-                    <li><a href="#." data-filter=".pf-digital-art">type4 </a></li>
+                    @foreach($data['productstype'] as $item)
+                        <li><a href="#." data-filter=".{{$item->id}}">{{$item->name}}</a></li>
+                    @endforeach
                 </ul>
 
                 <!-- PORTFOLIO ITEMS -->
 
-                <div class="items row col-4">
-
+                <div class="items row col-4" style="margin-bottom: 10rem">
+                    @foreach($data['products'] as $item)
                     <!-- ITEM -->
-                    <article class="portfolio-item pf-branding-design pf-web-design">
-                        <div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-1.jpg"> </a> </div>
+                    <article class="portfolio-item {{$item->type}}">
+                        <div class="portfolio-image"> <a href="#."> <img alt="" src="{{$item->image}}"> </a> </div>
                         <div class="portfolio-overlay">
-                            <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
+                            <div class="position-center-center">
+                                <p class="main-title">{{$item->name}}</p>
+                                <p class="sub-title">{!! $item->main_introduce !!}</p>
+                            </div>
                         </div>
                     </article>
+                    @endforeach
 
-                    <!-- ITEM -->
-                    <article class="portfolio-item pf-photography">
-                        <div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-2.jpg"> </a> </div>
-                        <div class="portfolio-overlay">
-                            <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                        </div>
-                    </article>
+                    {{--<!-- ITEM -->--}}
+                    {{--<article class="portfolio-item pf-photography">--}}
+                        {{--<div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-2.jpg"> </a> </div>--}}
+                        {{--<div class="portfolio-overlay">--}}
+                            {{--<div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
 
-                    <!-- ITEM -->
-                    <article class="portfolio-item pf-web-design pf-branding-design">
-                        <div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-3.jpg"> </a> </div>
-                        <div class="portfolio-overlay">
-                            <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                        </div>
-                    </article>
+                    {{--<!-- ITEM -->--}}
+                    {{--<article class="portfolio-item pf-web-design pf-branding-design">--}}
+                        {{--<div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-3.jpg"> </a> </div>--}}
+                        {{--<div class="portfolio-overlay">--}}
+                            {{--<div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
 
-                    <!-- ITEM -->
-                    <article class="portfolio-item pf-branding-design pf-digital-art">
-                        <div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-6.jpg"> </a> </div>
-                        <div class="portfolio-overlay">
-                            <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                        </div>
-                    </article>
+                    {{--<!-- ITEM -->--}}
+                    {{--<article class="portfolio-item pf-branding-design pf-digital-art">--}}
+                        {{--<div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-6.jpg"> </a> </div>--}}
+                        {{--<div class="portfolio-overlay">--}}
+                            {{--<div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
 
-                    <!-- ITEM -->
-                    <article class="portfolio-item pf-web-design pf-digital-art pf-branding-design">
-                        <div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-4.jpg"> </a> </div>
-                        <div class="portfolio-overlay">
-                            <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                        </div>
-                    </article>
+                    {{--<!-- ITEM -->--}}
+                    {{--<article class="portfolio-item pf-web-design pf-digital-art pf-branding-design">--}}
+                        {{--<div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-4.jpg"> </a> </div>--}}
+                        {{--<div class="portfolio-overlay">--}}
+                            {{--<div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
 
-                    <!-- ITEM -->
-                    <article class="portfolio-item pf-branding-design pf-digital-art">
-                        <div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-5.jpg"> </a> </div>
-                        <div class="portfolio-overlay">
-                            <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                        </div>
-                    </article>
+                    {{--<!-- ITEM -->--}}
+                    {{--<article class="portfolio-item pf-branding-design pf-digital-art">--}}
+                        {{--<div class="portfolio-image"> <a href="#."> <img alt="" src="images/img-5.jpg"> </a> </div>--}}
+                        {{--<div class="portfolio-overlay">--}}
+                            {{--<div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
                 </div>
             </div>
             <div class="text-center"></div>
@@ -407,21 +297,21 @@
                 <div class="row">
                     <!-- Team Member -->
                     <div class="col-md-4 margin-bottom-30"> <i class="fa fa-laptop"></i>
-                        <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="35" data-from="0">500</span> </span>
+                        <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="35" data-from="0">{{$data['webinfo']->productsClass}}</span> </span>
                             <h5>产品种类</h5>
                         </div>
                     </div>
 
                     <!-- Line Of Codes -->
                     <div class="col-md-4 margin-bottom-30"> <i class="fa fa-globe"></i>
-                        <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="5225" data-from="0">54</span> </span>
+                        <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="5225" data-from="0">{{$data['webinfo']->shopNum}}</span> </span>
                             <h5>分店</h5>
                         </div>
                     </div>
 
                     <!-- Satisfied Client -->
                     <div class="col-md-4  margin-bottom-30"> <i class="fa fa-area-chart"></i>
-                        <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="4977" data-from="0">1000+</span> </span>
+                        <div class="fats-conter"> <span class="number"> <span class="timer" data-speed="2000" data-refresh-interval="100" data-to="4977" data-from="0">{{$data['webinfo']->dailyTurnover}}+</span> </span>
                             <h5>日成交量</h5>
                         </div>
                     </div>
@@ -644,7 +534,7 @@
                     <h4 class="modal-title" id="myModalLabel">微信扫一扫</h4>
                 </div>
                 <div class="modal-body">
-                    <img src="{{asset('images/code.jpeg')}}" />
+                    <img src="{{asset('images/wechatcode.jpg')}}" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -655,10 +545,8 @@
     </div>
 @endsection
 @section('footer')
-    @include('components.myfooter')
+    @include('components.myfooter',['webinfo'=>$data['webinfo']])
 @endsection
 @section('custom-script')
-    <script>
 
-    </script>
 @endsection

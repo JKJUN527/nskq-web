@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\About;
 use App\Adverts;
+use App\Culture;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -22,9 +23,17 @@ class AdvertsController extends Controller {
             return view('admin.login');
 
         $data = DashboardController::getLoginInfo();
-        $data['picture'] = About::first();
+        $data['culture'] = Culture::where('type',1)->get();
         //return $data;
         return view('admin.ads', ['data' => $data]);
+    }
+    public function addAdView(){
+        $uid = AdminAuthController::getUid();
+        if ($uid == 0)
+            return view('admin.login');
+
+        $data = DashboardController::getLoginInfo();
+        return view('admin.addAds',['data'=>$data]);
     }
     //发布广告、以及修改广告
     //如果传入广告id，则修改对应广告
@@ -35,16 +44,11 @@ class AdvertsController extends Controller {
         if ($uid == 0) {
             return redirect('admin/login');
         }
-        $webinfo = About::first();
-        if ($request->hasFile('adpic')) {
-            $adpic = $request->file('adpic');//取得上传文件信息
+        $Culture = new Culture();
+        if ($request->hasFile('image')) {
+            $adpic = $request->file('image');//取得上传文件信息
             if ($adpic->isValid()) {//判断文件是否上传成功
-                //取得原文件名
-                $originalName = $adpic->getClientOriginalName();
-                //扩展名
                 $ext = $adpic->getClientOriginalExtension();
-                //mimetype
-                $type = $adpic->getClientMimeType();
                 //临时觉得路径
                 $realPath = $adpic->getRealPath();
                 //生成文件名
@@ -52,13 +56,14 @@ class AdvertsController extends Controller {
 
                 $bool = Storage::disk('adpic')->put($picname, file_get_contents($realPath));
 
-                if($webinfo->picture == "")
-                    $webinfo->picture = $request->input('title'). "@" . asset('storage/adpic/' . $picname);
-                else
-                    $webinfo->picture = $webinfo->picture . ";" . $request->input('title'). "@" . asset('storage/adpic/' . $picname);
+                $Culture->image = asset('storage/adpic/' . $picname);
 
             }
-            if ($webinfo->save()) {
+            $Culture->title = $request->input('title');
+            $Culture->type = $request->input('type');
+            $Culture->sub_title = $request->input('sub_title');
+            $Culture->introduce = $request->input('introduce');
+            if ($Culture->save()) {
                 $data['status'] = 200;
                 $data['msg'] = "新增成功";
             }else{
@@ -78,37 +83,35 @@ class AdvertsController extends Controller {
             $data['status'] = 400;
             $data['msg'] = "未知错误";
         }
-        $webinfo = About::first();
-        if($request->has('keyword')){
-            $keyword = $request->input('keyword');
-            $pics = explode(';', $webinfo->picture);
-            $newpics = "";
-            foreach ($pics as $k=>$pic){
-                if(strpos($pic,$keyword) !== false){
-                    unset($pics[$k]);
-                }else{
-                    if($newpics == "")
-                        $newpics = $pic;
-                    else
-                        $newpics = $newpics . ";" . $pic;
-                }
-            }
-            $webinfo->picture = $newpics;
-            if($webinfo->save()){
+        if($request->has('id')){
+            $id = $request->input('id');
+            $culture = Culture::where('id',$id)->delete();
+            if($culture){
                 $data['status'] = 200;
                 $data['msg'] = "删除成功";
             }
-
         }else{
             $data['msg'] = "参数错误";
         }
     }
-    public function addAdView(){
+
+    //企业文化照片
+    public function cultureindex(){
         $uid = AdminAuthController::getUid();
         if ($uid == 0)
             return view('admin.login');
 
         $data = DashboardController::getLoginInfo();
-        return view('admin.addAds',['data'=>$data]);
+        $data['culture'] = Culture::where('type',0)->get();
+        //return $data;
+        return view('admin.cultureList', ['data' => $data]);
+    }
+    public function addCultureView(){
+        $uid = AdminAuthController::getUid();
+        if ($uid == 0)
+            return view('admin.login');
+
+        $data = DashboardController::getLoginInfo();
+        return view('admin.addCulture',['data'=>$data]);
     }
 }

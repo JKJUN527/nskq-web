@@ -1123,6 +1123,7 @@ ul.tabs li.active, ul.tabs li:hover{
 .category-menu{
     padding: 15px 0;
 	margin-bottom:50px;
+    text-align: center;
 }
 .category-menu li{
 	display:block;
@@ -1142,7 +1143,10 @@ ul.tabs li.active, ul.tabs li:hover{
     border-bottom: 1px solid #ededed;
 }
 .category-menu li a:hover{
-	color:#03A9F4;
+	color:#1cd1aa;
+}
+.category-menu li:hover{
+    background: #ca856a;
 }
 .content .blog-item{
 	margin-bottom:30px;

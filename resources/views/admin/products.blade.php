@@ -54,12 +54,11 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>产品图片</th>
                             <th>类型</th>
-                            <th>中文名</th>
-                            <th>英文名</th>
+                            <th>产品名称</th>
                             <th>型号</th>
-                            <th>包装</th>
-                            <th>cas编号</th>
+                            <th>产品介绍</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -67,12 +66,11 @@
                         @forelse($data['products'] as $product)
                             <tr>
                                 <td>{{$product->id}}</td>
+                                <td><image src="{{$product->image}}" style="height: 37px;width:50px;"></image></td>
                                 <td>{{$product->typename}}</td>
-                                <td>{{$product->ch_name}}</td>
-                                <td>{{$product->en_name}}</td>
+                                <td>{{$product->name}}</td>
                                 <td>{{$product->model}}</td>
-                                <td>{{$product->package}}</td>
-                                <td>{{$product->cas_code}}</td>
+                                <td>{{$product->main_introduce}}</td>
                                 <td>
                                     <i class="material-icons delete" data-content="{{$product->id}}">delete</i>
                                     <i class="material-icons set-hot @if($product->is_urgency == 1) hot @endif"
@@ -81,7 +79,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">暂无产品</td>
+                                <td colspan="6">暂无产品</td>
                             </tr>
                         @endforelse
                         </tbody>
@@ -105,23 +103,15 @@
                 <form role="form" method="post" id="add_region_province_form">
                     <div class="modal-body">
 
-                        <label for="name">中文品名</label>
+                        <label for="name">产品名称</label>
                         <div class="input-group">
                             <div class="form-line">
-                                <input type="text" id="ch_name" name="ch_name" class="form-control"
+                                <input type="text" id="name" name="name" class="form-control"
                                        placeholder="中文名称">
                             </div>
-                            <label id="ch_name-error" class="error" for="ch_name"></label>
+                            <label id="name-error" class="error" for="name"></label>
                         </div>
-                        <label for="name">英文品名</label>
-                        <div class="input-group">
-                            <div class="form-line">
-                                <input type="text" id="en_name" name="en_name" class="form-control"
-                                       placeholder="英文名称">
-                            </div>
-                            <label id="en_name-error" class="error" for="en_name"></label>
-                        </div>
-                        <label for="name">规格</label>
+                        <label for="model">规格</label>
                         <div class="input-group">
                             <div class="form-line">
                                 <input type="text" id="model" name="model" class="form-control"
@@ -129,21 +119,14 @@
                             </div>
                             <label id="model-error" class="error" for="model"></label>
                         </div>
-                        <label for="name">包装</label>
+
+                        <label for="introduce">产品介绍</label>
                         <div class="input-group">
                             <div class="form-line">
-                                <input type="text" id="package_mode" name="package_mode" class="form-control"
-                                       placeholder="包装">
+                                <textarea rows="3" class="form-control no-resize" id="introduce" name="introduce"
+                                          placeholder="产品介绍..." required></textarea>
                             </div>
-                            <label id="package_mode-error" class="error" for="package_mode"></label>
-                        </div>
-                        <label for="name">CAS编码</label>
-                        <div class="input-group">
-                            <div class="form-line">
-                                <input type="text" id="cas" name="cas" class="form-control"
-                                       placeholder="cas编码">
-                            </div>
-                            <label id="cas-error" class="error" for="cas"></label>
+                            <label id="introduce-error" class="error" for="introduce"></label>
                         </div>
 
                         <label for="parent-place">产品类别</label>
@@ -153,10 +136,22 @@
                                     id="parent-place" name="parent-place" data-live-search="true">
                                 <option value="0">请选择产品分类</option>
                                 @forelse($data['region'] as $region)
-                                    <option value="{{$region->id}}">{{$region->ch_name}}</option>
+                                    <option value="{{$region->id}}">{{$region->name}}</option>
                                 @endforeach
                             </select>
                             <label id="name-error" class="error" for="parent-place"></label>
+                        </div>
+                        <label for="parent-place">产品图片</label>
+                        <div class="input-group">
+                            <div class="form-line">
+                                <input type="file" id="picture-big" name="picture-big" class="form-control"
+                                       onchange='showBigPreview(this)'/>
+                            </div>
+                            <div class="help-info" for="picture-big">.jpg 或 .png格式，390×290 像素</div>
+                            <label id="picture-big-error" class="error" for="picture-big"></label>
+                        </div>
+
+                        <div id="preview-holder-big" class="preview-holder">
                         </div>
 
 
@@ -173,15 +168,98 @@
 
 @section('custom-script')
     <script type="text/javascript">
+        function showBigPreview(element) {
+            var isCorrect = true;
+
+            var file = element.files[0];
+            var anyWindow = window.URL || window.webkitURL;
+            var objectUrl = anyWindow.createObjectURL(file);
+            window.URL.revokeObjectURL(file);
+
+            var bigImagePath = $("input[name='picture-big']").val();
+            if (!/.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(bigImagePath)) {
+                isCorrect = false;
+                $("#picture-big").val("");
+                swal({
+                    title: "错误",
+                    type: "error",
+                    text: "图片格式错误，支持：.jpg .jpeg .png类型。请选择正确格式的图片后再试！",
+                    cancelButtonText: "关闭",
+                    showCancelButton: true,
+                    showConfirmButton: false
+                });
+            } else if (file.size > 5 * 1024 * 1024) {
+                isCorrect = false;
+                $("#picture-big").val("");
+                swal({
+                    title: "错误",
+                    type: "error",
+                    text: "图片文件最大支持：5MB",
+                    cancelButtonText: "关闭",
+                    showCancelButton: true,
+                    showConfirmButton: false
+                });
+            } else {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var data = e.target.result;
+                    //加载图片获取图片真实宽度和高度
+                    var image = new Image();
+                    image.onload = function () {
+                        var width = image.width;
+                        var height = image.height;
+                        console.log(width + "//" + height);
+
+                        if (width < 390  || height < 290) {
+                            isCorrect = false;
+                            $("#picture-big").val("");
+                            swal({
+                                title: "错误",
+                                type: "error",
+                                text: "当前选择图片分辨率为: " + width + "px * " + height + "px \n大图片广告分辨率应为 390像素 * 290像素",
+                                cancelButtonText: "关闭",
+                                showCancelButton: true,
+                                showConfirmButton: false
+                            });
+                        } else if (isCorrect) {
+                            $("#preview-holder-big").html("<div class='image-preview'>" +
+                                "<img src='" + objectUrl + "' width='390' height='290'>" +
+                                "<i class='material-icons delete-image' onclick='deleteBigImage(this)'>close</i></div>");
+                        }
+                    };
+                    image.src = data;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function deleteBigImage(element) {
+
+            var imageHolder = element.parentNode;
+
+            swal({
+                title: "确认",
+                text: "确认删除图片吗",
+                type: "info",
+                confirmButtonText: "确认",
+                cancelButtonText: "取消",
+                showCancelButton: true,
+                closeOnConfirm: false
+            }, function () {
+                swal("图片已删除");
+                $("#picture-big").val(null);
+                imageHolder.remove();
+            });
+        }
+
         $("#add_region_province_form").submit(function (event) {
             event.preventDefault();
 
-            var ch_name = $("#ch_name");
-            var en_name = $("#en_name");
+            var name = $("#name");
             var model = $("#model");
-            var package_mode = $("#package_mode");
-            var cas = $("#cas");
+            var introduce = $("#introduce");
             var parent_id = $("select[name='parent-place']");
+            var file = $("#picture-big");
 
             if (parent_id.val() == 0) {
                 setError(parent_id, 'parent-place', '不能为空');
@@ -189,43 +267,42 @@
             } else {
                 removeError(parent_id, 'parent-place');
             }
-            if (ch_name.val() === '') {
-                setError(ch_name, 'ch_name', '不能为空');
+            if (name.val() === '') {
+                setError(name, 'name', '不能为空');
                 return;
             } else {
-                removeError(ch_name, 'ch_name');
+                removeError(name, 'name');
             }
-            if (en_name.val() === '') {
-                setError(en_name, 'en_name', '不能为空');
+            var testContent = introduce.val().replace(/\r\n/g, '');
+            testContent = testContent.replace(/\n/g, '');
+            testContent = testContent.replace(/\s/g, '');
+
+            if (testContent === '') {
+                setError(introduce, 'introduce', '不能为空');
                 return;
             } else {
-                removeError(en_name, 'en_name');
+                removeError(introduce, 'introduce');
             }
-//            if (model.val() === '') {
-//                setError(model, 'model', '不能为空');
-//                return;
-//            } else {
-//                removeError(model, 'model');
-//            }
-//            if (package1.val() === '') {
-//                setError(package1, 'package1', '不能为空');
-//                return;
-//            } else {
-//                removeError(package1, 'package1');
-//            }
-//            if (cas.val() === '') {
-//                setError(cas, 'cas', '不能为空');
-//                return;
-//            } else {
-//                removeError(cas, 'cas');
-//            }
+
+            // introduce "\r\n" 或者 "\n" 换成 <br>
+            // '\s'空格替换成"&nbsp;"
+            // 这样可以保持内容的编辑格式
+            var Content = introduce.val().replace(/\r\n/g, '<br>');
+            Content = Content.replace(/\n/g, '<br>');
+            Content = Content.replace(/\s/g, '&nbsp;');
 
             var formData = new FormData();
-            formData.append("ch_name", ch_name.val());
-            formData.append("en_name", en_name.val());
+            if (file.prop("files")[0] === undefined) {
+                console.log("file is empty");
+                setError(file, 'picture-big', "请上传产品图片390像素 * 290像素");
+                return;
+            } else {
+                removeError(file, 'picture-big');
+                formData.append('picture', file.prop("files")[0]);
+            }
+            formData.append("name", name.val());
             formData.append("model", model.val());
-            formData.append("package", package_mode.val());
-            formData.append("cas", cas.val());
+            formData.append("introduce", Content);
             formData.append("type", parent_id.val());
 
             $.ajax({

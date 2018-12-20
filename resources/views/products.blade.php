@@ -22,6 +22,12 @@
             font-size: 1.2rem;
             margin: 0 0 0.5rem 0;
         }
+        .type-active{
+            background: #ca856a;
+        }
+        .type-active a{
+            color: #1cd1a9 !important;
+        }
     </style>
 @endsection
 @section('content')
@@ -43,153 +49,54 @@
         <div class="row">
             <aside class="sidebar col-md-3">
                 <h4>产品种类</h4>
-                <ul class="category-menu portfolio-filter ">
-                    <li class="product-type-item"><a href="#" data-filter=".pf-digital-art">News</a></li>
-                    <li class="product-type-item"><a href="#" data-filter="*">all</a></li>
-                    <li class="product-type-item"><a href="#" data-filter=".pf-web-design">Corporate</a></li>
-                    <li class="product-type-item"><a href="#">World</a></li>
-                    <li class="product-type-item"><a href="#">Gaming</a></li>
-                    <li class="product-type-item"><a href="#">Software</a></li>
-                    <li class="product-type-item"><a href="#">Article</a></li>
+                <ul class="category-menu">
+                    <li class="product-type-item {{$data['selecttype'] ==-1 ? 'type-active':''}}" name="productType" data-content="-1">
+                        <a class="{{$data['selecttype'] ==-1? 'active':''}}">全部</a>
+                    </li>
+                    @foreach($data['type'] as $item)
+                     <li class="product-type-item {{$item->id == $data['selecttype']? 'type-active':''}}" name="productType" data-content="{{$item->id}}">
+                         <a>{{$item->name}}</a>
+                     </li>
+                    @endforeach
                 </ul>
             </aside>
             <div class="portfolio port-wrap col-md-8">
 
-                {{--<!-- Work Filter -->--}}
-                {{--<ul class="portfolio-filter text-center margin-bottom-80">--}}
-                    {{--<li><a class="active" href="#." data-filter="*">ALL</a></li>--}}
-                    {{--<li><a href="#." data-filter=".pf-branding-design">Branding </a></li>--}}
-                    {{--<li><a href="#." data-filter=".pf-photography">Media </a></li>--}}
-                    {{--<li><a href="#." data-filter=".pf-web-design">Illustration </a></li>--}}
-                    {{--<li><a href="#." data-filter=".pf-digital-art">UI Design </a></li>--}}
-                {{--</ul>--}}
-
                 <!-- PORTFOLIO ITEMS -->
                     <div class="items row col-3">
-
-                    <!-- ITEM -->
-                        <article class="portfolio-item">
-                            <div class="portfolio-image"> <a href="#."> <img alt="" src="images/port-img-1-1.jpg"> </a> </div>
-                            <div class="portfolio-overlay">
-                                <div class="position-center-center">
-                                    {{--<a href="#."><i class="ion-link"></i></a> --}}
-                                    <p class="main-title">产品名称</p>
-                                    <p class="sub-title">产品介绍一大堆一堆一堆一堆一堆产品介绍一大堆一堆一堆一堆一堆产品介绍一大堆一堆一堆一堆一堆</p>
+                        @forelse($data['products'] as $item)
+                            <article class="portfolio-item">
+                                <div class="portfolio-image"> <a> <img alt="" src="{{$item->image}}"> </a> </div>
+                                <div class="portfolio-overlay">
+                                    <div class="position-center-center">
+                                        {{--<a href="#."><i class="ion-link"></i></a> --}}
+                                        <p class="main-title">{{$item->name}}
+                                        @if($item->model != '')
+                                            <p style="color: #ca856a">/{{$item->model}}</p>
+                                        @endif
+                                        </p>
+                                        <p class="sub-title">{!! $item->main_introduce !!}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-
-                        <!-- ITEM -->
-                        <article class="portfolio-item">
-                            <div class="portfolio-image"> <a href="#."> <img alt="" src="images/port-img-1-2.jpg"> </a> </div>
-                            <div class="portfolio-overlay">
-                                <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                            </div>
-                        </article>
-
-                        <!-- ITEM -->
-                        <article class="portfolio-item">
-                            <div class="portfolio-image"> <a href="#."> <img alt="" src="images/port-img-1-3.jpg"> </a> </div>
-                            <div class="portfolio-overlay">
-                                <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                            </div>
-                        </article>
-
-                        <!-- ITEM -->
-                        <article class="portfolio-item pf-branding-design pf-digital-art">
-                            <div class="portfolio-image"> <a href="#."> <img alt="" src="images/port-img-1-4.jpg"> </a> </div>
-                            <div class="portfolio-overlay">
-                                <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                            </div>
-                        </article>
-
-                        <!-- ITEM -->
-                        <article class="portfolio-item pf-web-design pf-digital-art pf-branding-design">
-                            <div class="portfolio-image"> <a href="#."> <img alt="" src="images/port-img-1-5.jpg"> </a> </div>
-                            <div class="portfolio-overlay">
-                                <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                            </div>
-                        </article>
-
-                        <!-- ITEM -->
-                        <article class="portfolio-item pf-branding-design pf-digital-art">
-                            <div class="portfolio-image"> <a href="#."> <img alt="" src="images/port-img-1-6.jpg"> </a> </div>
-                            <div class="portfolio-overlay">
-                                <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                            </div>
-                        </article>
-
-                        <!-- ITEM -->
-                        <article class="portfolio-item pf-web-design pf-branding-design">
-                            <div class="portfolio-image"> <a href="#."> <img alt="" src="images/port-img-1-7.jpg"> </a> </div>
-                            <div class="portfolio-overlay">
-                                <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                            </div>
-                        </article>
-
-                        <!-- ITEM -->
-                        <article class="portfolio-item pf-branding-design pf-digital-art">
-                            <div class="portfolio-image"> <a href="#."> <img alt="" src="images/port-img-1-8.jpg"> </a> </div>
-                            <div class="portfolio-overlay">
-                                <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                            </div>
-                        </article>
-
-                        <!-- ITEM -->
-                        <article class="portfolio-item pf-web-design pf-digital-art pf-branding-design">
-                            <div class="portfolio-image"> <a href="#."> <img alt="" src="images/port-img-1-9.jpg"> </a> </div>
-                            <div class="portfolio-overlay">
-                                <div class="position-center-center"> <a href="#."><i class="ion-link"></i></a> </div>
-                            </div>
-                        </article>
+                            </article>
+                        @endforeach
                     </div>
-                    <div id="pagination" class="pagination"></div>
+                <nav>
+                    {!! $data['products']->render() !!}
+                </nav>
             </div>
 
         </div>
     </div>
     @endsection
 @section('footer')
-    @include('components.myfooter')
+    @include('components.myfooter',[ 'webinfo'=>$data['webinfo']])
 @endsection
 @section('custom-script')
     <script>
-        // var totalProducts = 0;
-        window.onload = function () {
-            // totalProducts = $(".portfolio-item").length;
-            countPage();
-        };
-        function countPage() {
-            $('#pagination').html("");
-            var visibleProduct = $(".portfolio-item:visible");
-            var total = visibleProduct.size();
-            console.log(total);
-            if(total >3){
-                var pageTotal = Math.ceil(total/3);
-                new Page({
-                    id: 'pagination',
-                    pageTotal: pageTotal, //必填,总页数
-                    pageAmount: 3,  //每页多少条
-                    dataTotal: total, //总共多少条数据
-                    curPage:1, //初始页码,不填默认为1
-                    pageSize: 5, //分页个数,不填默认为5
-                    showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
-                    showSkipInputFlag:false, //是否支持跳转,不填默认不显示
-                    getPage: function (page) {
-                        //根据页数来决定显示的元素和隐藏的元素
-                        console.log(page);
-                        if(page == 2)
-                            visibleProduct.eq(1).hide();
-                        else
-                            visibleProduct.eq(1).show();
-                    }
-                })
-            }
-        }
-        $(".category-menu a").click(function () {
-            setTimeout(function () {
-                countPage()
-            },500)
+        $('li[name=productType]').click(function () {
+            var id = $(this).attr('data-content');
+            window.location.href="/products?producttype=" + id;
         });
     </script>
 @endsection

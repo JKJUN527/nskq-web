@@ -52,7 +52,6 @@
                         <tr>
                             <th>#</th>
                             <th>中文名</th>
-                            <th>英文名</th>
                             <th>描述</th>
                             <th>操作</th>
                         </tr>
@@ -62,9 +61,8 @@
                             <tr>
                                 <td>{{$region->id}}</td>
                                 <td>
-                                    {{$region->ch_name}}
+                                    {{$region->name}}
                                 </td>
-                                <td>{{$region->en_name}}</td>
                                 <td>{{$region->describe}}</td>
                                 <td>
                                     <i class="material-icons delete" data-content="{{$region->id}}">delete</i>
@@ -101,14 +99,6 @@
                             </div>
                             <label id="ch_name-error" class="error" for="ch_name"></label>
                         </div>
-                        <label for="name">英文名称</label>
-                        <div class="input-group">
-                            <div class="form-line">
-                                <input type="text" id="en_name" name="en_name" class="form-control"
-                                       placeholder="英文名称">
-                            </div>
-                            <label id="en_name-error" class="error" for="en_name"></label>
-                        </div>
                         <label for="name">分类描述</label>
                         <div class="input-group">
                             <div class="form-line">
@@ -136,7 +126,6 @@
             event.preventDefault();
 
             var ch_name = $("#ch_name");
-            var en_name = $("#en_name");
             var describe = $("#describe");
 
             if (ch_name.val() === '') {
@@ -145,16 +134,9 @@
             } else {
                 removeError(ch_name, 'ch_name');
             }
-            if (en_name.val() === '') {
-                setError(en_name, 'en_name', '不能为空');
-                return;
-            } else {
-                removeError(en_name, 'en_name');
-            }
 
             var formData = new FormData();
             formData.append("ch_name", ch_name.val());
-            formData.append("en_name", en_name.val());
             formData.append("describe", describe.val());
 
             $.ajax({
