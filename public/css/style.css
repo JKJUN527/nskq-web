@@ -1305,7 +1305,7 @@ header .container {
 	text-transform: uppercase;
 }
 .portfolio-item:hover .portfolio-overlay, .portfolio-item:active .portfolio-overlay, .portfolio-item.active .portfolio-overlay, .portfolio-item:focus .portfolio-overlay {
-	opacity: 1;
+	opacity: 1 !important;
 }
 .portfolio-item:hover img {
 	transform: scale(1.1);

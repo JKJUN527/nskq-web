@@ -48,7 +48,7 @@
                         <a href="mailto:jkjun0527@foxmail.com" target="_blank" class="linking">技术支持：Four2Nine</a>
                     </div>
                 </div>
-                <div class="" style="text-align: center;color: #fff;">沪ICP备18047544号-1 ©2018 诺斯凯其（上海）家用电器有限公司  ALL RIGHTS RESERVED.
+                <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center;color: #fff;">沪ICP备18047544号-1 ©2018 诺斯凯其（上海）家用电器有限公司  ALL RIGHTS RESERVED.
                 </div>
             </div>
         </div>

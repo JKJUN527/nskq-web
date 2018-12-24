@@ -111,6 +111,11 @@
             // var id = $(this).attr('data-content');
             // $('.big-info'+id).show();
         });
-
+        // $('.portfolio-overlay').mouseover(function () {
+        //     $('.portfolio-overlay').css('opacity',1);
+        // });
+        // $('.portfolio-overlay').mouseout(function () {
+        //     $('.portfolio-overlay').css('opacity',0);
+        // });
     </script>
 @endsection

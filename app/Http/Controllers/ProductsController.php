@@ -23,10 +23,10 @@ class ProductsController extends Controller
             $data['selecttype'] = $request->input('producttype');
             $data['products'] = Product::where('type',$request->input('producttype'))
                 ->orderBy('updated_at','desc')
-                ->paginate(2);
+                ->paginate(9);
         }else{
             $data['selecttype'] = -1;
-            $data['products'] = Product::orderBy('updated_at','desc')->paginate(2);
+            $data['products'] = Product::orderBy('updated_at','desc')->paginate(9);
         }
         return view('products',['data'=>$data]);
     }
