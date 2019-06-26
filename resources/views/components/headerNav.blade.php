@@ -3,7 +3,7 @@
     <div class="sticky">
         <div class="container">
             <!-- Logo -->
-            <div class="logo"> <a href="#."><img class="img-responsive" src="images/logo-nskq.png" alt="" ></a> </div>
+            <div class="logo"> <a href="#."><img class="img-responsive" src="images/logo.png" alt="" ></a> </div>
 
             <!-- Navigation -->
             <nav class="navbar webimenu">
